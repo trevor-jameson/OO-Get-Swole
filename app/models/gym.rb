@@ -21,14 +21,10 @@ class Gym
     end
   end
 
+# .collect is used here instead of .select because it needs to return the lifter associated
+# to the membership instead of the membership itself
   def lifters
-    Membership.all.collect do |membership|
-      if membership.gym == self
-        membership.lifter
-      else
-        nil
-      end
-    end.compact
+    self.memberships.collect {|membership| membership.lifter}
   end
 
   def lifter_names

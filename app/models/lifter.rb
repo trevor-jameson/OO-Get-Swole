@@ -19,13 +19,7 @@ class Lifter
   end
 
   def gyms
-    Membership.all.collect do |membership|
-      if membership.lifter == self
-        membership.gym
-      else
-        nil
-      end
-    end.compact
+    memberships.collect {|membership| membership.gym}
   end
 
   def self.average_lift
